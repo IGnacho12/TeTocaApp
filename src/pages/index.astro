@@ -2,10 +2,27 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="hola">
-  <h1>Página de prueba, instalame</h1>
+<Layout title="Te toca 🧹">
+  <main>
+      <h1>
+    ¡Te toca Leti🧹!
+  </h1>
+  </main>
+
 </Layout>
 
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+</style>
+
+
+<!-- Script para cargar el Service Worker -->
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
