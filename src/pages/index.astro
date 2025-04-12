@@ -1,16 +1,24 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Component from "../components/component.astro";
+import Go from "../components/go.astro";
 ---
 
 <Layout title="Te toca 🧹">
   <main>
     <h1 class="text-6xl font-bold pb-4 self-center place-self-center">¡Te toca🧹!</h1>
     <Component></Component>
+    <Go></Go>
   </main>
   
 </Layout>
 
+<style> 
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
 
 <!-- Script para cargar el Service Worker -->
 <script>
