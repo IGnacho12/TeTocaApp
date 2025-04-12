@@ -1,8 +1,8 @@
 <button id="go" class="bg-blue-800 text-white font-bold text-2xl px-4 py-2 rounded-xl transition-all hover:bg-blue-500 duration-100 hover:rounded m-12 place-self-center hover:cursor-pointer">Empezar</button>
 
 <script>
-  document.getElementById("go").addEventListener("click", function() {
-    const slideElement = document.querySelector(".logos-slide");
+  document.getElementById("go")!.addEventListener("click", function() {
+    const slideElement = document.querySelector(".logos-slide")!;
     slideElement.classList.add("animation-slide");
   });
 </script>
