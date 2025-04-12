@@ -1,25 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Component from "../components/component.astro";
 ---
 
 <Layout title="Te toca 🧹">
   <main>
-      <h1>
-    ¡Te toca Leti🧹!
-  </h1>
+    <h1 class="text-6xl font-bold pb-4 self-center place-self-center">¡Te toca🧹!</h1>
+    <Component></Component>
   </main>
-
+  
 </Layout>
-
-<style>
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-  }
-</style>
 
 
 <!-- Script para cargar el Service Worker -->
