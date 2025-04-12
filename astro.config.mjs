@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import AstroPWA from '@vite-pwa/astro';
-
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
@@ -10,3 +9,4 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 });
+
