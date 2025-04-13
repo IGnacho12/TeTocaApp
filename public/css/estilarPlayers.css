@@ -1,0 +1,16 @@
+.grupo {
+  display: flex;
+}
+
+.player {
+  aspect-ratio: 1 / 1; /* o 4 / 3, 1 / 1, etc */
+  width: 100%;
+  object-fit: contain; /* o contain, según tu necesidad */
+  height: 100px;
+  margin: 20px 5px;
+  background: linear-gradient(
+    0deg,
+    rgba(16, 8, 248, 0.6) 0%,
+    transparent 20%
+  );
+}
