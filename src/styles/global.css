@@ -1,1 +1,24 @@
 @import "tailwindcss";
+
+.grupo {
+  @apply flex;
+}
+
+.player {
+  @apply flex flex-col justify-center items-center; /* align-items: space-around no existe en Tailwind, usé items-center */
+  @apply aspect-square object-contain h-[130px] w-[130px] mx-[5px] my-[20px];
+  background: linear-gradient(
+    0deg,
+    rgba(16, 8, 248, 0.6) 0%,
+    transparent 20%
+  );
+}
+
+.nombre {
+  @apply text-center break-words text-2xl;
+  
+}
+
+.apellido {
+  @apply font-bold text-center text-gray-400;
+}
