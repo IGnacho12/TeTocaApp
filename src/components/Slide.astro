@@ -31,8 +31,14 @@
       >
     </div>
 
+
     <!-- Contendor de todo el carrusel -->
     <section class="carrusel flex flex-row">
+      <div class=" absolute top-0 right-1/2 translate-x-1/2 mt-5 bg-black p-9 flex-col justify-center place-items-center" id="ganador"> 
+        <h1 class="text-4xl text-green-300 font-bold text-shadow-lg/30 text-shadow-green-400">Ganador</h1>
+        <h2 class="nombre">Gerardo</h2>
+        <span class="apellido">vazques</span>
+      </div>
       <!-- Carrusel -->
       <!-- Cada DIV es un grupo del carrusel -->
 
@@ -140,7 +146,6 @@
 
   htmlGrupoNuevo += `</div>`;
 
-  console.log(htmlGrupoNuevo);
 
   function ver_coordenadas() {
     const padre = document.querySelector(".container-carrusel");
@@ -205,6 +210,9 @@
 
     console.log("Jugador más cerca del centro:", jugadorMasCerca);
     // Clases visuales cuando gana alguno
-    jugadorMasCerca!.classList.add("ganador");
+    const ganadorEl = document.querySelector("#ganador")
+    
+    ganadorEl!.classList.remove("oculto");
+    ganadorEl!.classList.add("mostrar");
   });
 </script>
