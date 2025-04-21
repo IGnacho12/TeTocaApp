@@ -1,0 +1,51 @@
+<div
+  class="absolute top-0 right-1/2 translate-x-1/2 mt-5 p-9 flex-col justify-center place-items-center oculto backdrop-blur-lg z-50 w-full"
+  id="ganador"
+>
+  <h1
+    class="text-4xl text-green-300 font-bold text-shadow-lg/30 text-shadow-green-400"
+  >
+    ¡Te toca!f
+  </h1>
+  <h2 class="nombre" id="nombreGanador"></h2>
+  <span class="apellido" id="apellidoGanador"></span>
+</div>
+
+<script>
+  const carrusel = document.querySelector(".carrusel")!;
+  const nombreGanador = document.querySelector("#nombreGanador");
+  const apellidoGanador = document.querySelector("#apellidoGanador");
+
+  carrusel.addEventListener("animationend", () => {
+    const padre = document.querySelector(".container-carrusel")!;
+    const padre_coords = padre.getBoundingClientRect();
+    const centroX = padre_coords.left + padre_coords.width / 2;
+
+    const jugadores = document.querySelectorAll(".player");
+    let jugadorMasCerca = null;
+    let distanciaMinima = Infinity;
+
+    jugadores.forEach((jugador) => {
+      const coords = jugador.getBoundingClientRect();
+      const centroJugador = coords.left + coords.width / 2;
+      const distancia = Math.abs(centroJugador - centroX);
+
+      if (distancia < distanciaMinima) {
+        distanciaMinima = distancia;
+        jugadorMasCerca = jugador;
+      }
+    });
+
+    console.log("Jugador más cerca del centro:", jugadorMasCerca);
+    // Clases visuales cuando gana
+    const ganadorEl = document.querySelector("#ganador");
+    console.log(ganadorEl);
+
+    ganadorEl!.classList.remove("oculto");
+    ganadorEl!.classList.add("flex");
+    // Asignación del ganador
+    nombreGanador.innerHTML = `${jugadorMasCerca.firstElementChild.textContent}`;
+    apellidoGanador.innerHTML = `${jugadorMasCerca.lastElementChild.textContent}`;
+  });
+
+</script>

@@ -1,100 +1,91 @@
+---
+import Ganador from "./Ganador.astro";
+---
+
+<!-- 🧱 Estructura general del carrusel -->
 <div class="relative">
   <main class="container-carrusel w-full z-20 relative">
-    <!-- Degradado Izquierdo -->
+    <!-- 🎨 Degradados laterales para el efecto de carrusel -->
     <div
       class="absolute top-0 left-0 h-full w-1/5 bg-gradient-to-r from-black to-transparent z-30 pointer-events-none"
     >
     </div>
-
-    <!-- Degradado Derecho -->
     <div
       class="absolute top-0 right-0 h-full w-1/5 bg-gradient-to-l from-black to-transparent z-30 pointer-events-none"
     >
     </div>
 
-    <!-- Flecha de arriba -->
+    <!-- 🔽 Flecha decorativa en la parte inferior -->
     <div class="absolute bottom-2 z-30 right-1/2 h-full translate-x-1/2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
         height="24"
-        viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
         class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-down"
-        ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
-          d="M12 5l0 14"></path><path d="M16 15l-4 4"></path><path d="M8 15l4 4"
-        ></path></svg
       >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M12 5l0 14"></path>
+        <path d="M16 15l-4 4"></path>
+        <path d="M8 15l4 4"></path>
+      </svg>
     </div>
 
-
-    <!-- Contendor de todo el carrusel -->
+    <!-- 🧩 Componente Ganador + Sección Carrusel -->
+    <Ganador />
     <section class="carrusel flex flex-row">
-      <div class=" absolute top-0 right-1/2 translate-x-1/2 mt-5 bg-black p-9 flex-col justify-center place-items-center" id="ganador"> 
-        <h1 class="text-4xl text-green-300 font-bold text-shadow-lg/30 text-shadow-green-400">Ganador</h1>
-        <h2 class="nombre">Gerardo</h2>
-        <span class="apellido">vazques</span>
+      <!-- 🎯 Grupo inicial de jugadores (estático) -->
+      <div class="grupo flex-row flex" id="1">
+        <div class="player">
+          <h2 class="nombre">Benjamín</h2><span class="apellido">Aguilera</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Yoel</h2><span class="apellido">Brizuela</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Ignacio</h2><span class="apellido">Castillo</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Naara</h2><span class="apellido">Duarte</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Joaquín</h2><span class="apellido">Paniagua</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Milagros</h2><span class="apellido"
+            >Fernández</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Marcos</h2><span class="apellido">Gauto</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Nicolás</h2><span class="apellido">Erazo</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Ramiro</h2><span class="apellido">Rojas</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Cristian</h2><span class="apellido">Rojas</span>
+        </div>
+        <div class="player">
+          <h2 class="nombre">Esteban</h2><span class="apellido"
+            >Barrientos</span>
+        </div>
       </div>
-      <!-- Carrusel -->
-      <!-- Cada DIV es un grupo del carrusel -->
 
-      <!-- Grupo 1 -->
-      <div class="grupo flex-row flex border-2 border-white/20" id="1">
-        <div class="player">
-          <h2 class="nombre">Valentina</h2><span class="apellido">Torres</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Lucas</h2><span class="apellido">Fernández</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Sofía</h2><span class="apellido">Morales</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Tomás</h2><span class="apellido">Herrera</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Camila</h2><span class="apellido">Navarro</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Ignacio</h2><span class="apellido">Vega</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Isabella</h2><span class="apellido">Muñoz</span>
-        </div>
-      </div>
-
-      <!-- Grupo 2 -->
-      <div class="grupo flex-row flex border-2 border-white/20" id="1">
-        <div class="player">
-          <h2 class="nombre">Valentina</h2><span class="apellido">Torres</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Lucas</h2><span class="apellido">Fernández</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Sofía</h2><span class="apellido">Morales</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Tomás</h2><span class="apellido">Herrera</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Camila</h2><span class="apellido">Navarro</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Ignacio</h2><span class="apellido">Vega</span>
-        </div>
-        <div class="player">
-          <h2 class="nombre">Isabella</h2><span class="apellido">Muñoz</span>
-        </div>
+      <!-- ⚙️ Grupo generado dinámicamente (se reemplaza cuando se sale del carrusel) -->
+      <div class="grupo flex-row flex" id="2">
+        <!-- mismo contenido estático por ahora -->
       </div>
     </section>
   </main>
 </div>
 
+<!-- 💅 Estilos del carrusel -->
 <style>
   .container-carrusel {
     overflow: hidden;
@@ -109,47 +100,65 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-5000%); /* frena */
+      transform: translateX(-5000%);
     }
   }
 
-  /* Aplicar el suavizado solo al final de la animación */
   .animation-slide {
-    animation: scroll 10s forwards;
+    animation: scroll 2s forwards;
     animation-timing-function: cubic-bezier(0, -0.17, 0, 1.01);
   }
 </style>
 
+<!-- 🧠 Lógica del carrusel -->
 <script>
+  // 📌 Lista de jugadores
   const jugadoresData = [
-    { nombre: "Valentina", apellido: "Torres" },
-    { nombre: "Mateo", apellido: "Ríos" },
-    { nombre: "Lucas", apellido: "Fernández" },
-    { nombre: "Sofía", apellido: "Morales" },
-    { nombre: "Tomás", apellido: "Herrera" },
-    { nombre: "Camila", apellido: "Navarro" },
-    { nombre: "Ignacio", apellido: "Vega" },
-    { nombre: "Isabella", apellido: "Muñoz" },
-    { nombre: "último", apellido: "Castro" },
+    { nombre: "Benjamín", apellido: "Aguilera" },
+    { nombre: "Yoel", apellido: "Brizuela" },
+    { nombre: "Ignacio", apellido: "Castillo" },
+    { nombre: "Naara", apellido: "Duarte" },
+    { nombre: "Joaquín", apellido: "Paniagua" },
+    { nombre: "Milagros", apellido: "Fernández" },
+    { nombre: "Marcos", apellido: "Gauto" },
+    { nombre: "Nicolás", apellido: "Erazo" },
+    { nombre: "Ramiro", apellido: "Rojas" },
+    { nombre: "Cristian", apellido: "Rojas" },
+    { nombre: "Esteban", apellido: "Barrientos" },
   ];
 
-  let htmlGrupoNuevo = `<div class="grupo flex flex-row border-2 border-white/20" id="2">`;
+  // 🔁 Genera un arreglo con jugadores aleatorios (pueden repetirse)
+  function genenrarJugadoresDeManeraAleatoria() {
+    let jugadoresAleatoriosData = [];
 
-  jugadoresData.forEach((j, index) => {
+    for (let i = 0; i < jugadoresData.length; i++) {
+      let numeroAleatorio = Math.floor(Math.random() * jugadoresData.length);
+      jugadoresAleatoriosData.push(jugadoresData[numeroAleatorio]);
+    }
+
+    return jugadoresAleatoriosData;
+  }
+
+  // 🧱 Crear HTML del nuevo grupo de jugadores
+  const jugadoresAleatorios = genenrarJugadoresDeManeraAleatoria();
+
+  let htmlGrupoNuevo = `<div class="grupo flex flex-row" id="2">`;
+
+  jugadoresAleatorios.forEach((j, index) => {
     htmlGrupoNuevo += `
-    <div class="player">
-      <h2 class="nombre${index < 2 ? " titulo" : ""}">${j.nombre}</h2>
-      <span class="apellido">${j.apellido}</span>
-    </div>
-  `;
+      <div class="player">
+        <h2 class="nombre${index < 2 ? " titulo" : ""}">${j.nombre}</h2>
+        <span class="apellido">${j.apellido}</span>
+      </div>
+    `;
   });
 
   htmlGrupoNuevo += `</div>`;
 
-
+  // 🧭 Verifica si el grupo 1 salió del área visible y agrega un nuevo grupo
   function ver_coordenadas() {
     const padre = document.querySelector(".container-carrusel");
-    const grupo1 = document.getElementById("1")!;
+    const grupo1 = document.getElementById("1");
     const carrusel = document.querySelector(".carrusel");
 
     if (!padre || !carrusel) return;
@@ -159,24 +168,18 @@
 
     if (padre_coords.left > grupo1_coords.right) {
       grupo1.id = "0";
-      console.log("Ya pasó el primer grupo");
 
-      // Cambiar el id del grupo 2 a 1
       const grupo2 = document.getElementById("2");
       if (grupo2) {
-        grupo2.id = "1"; // El grupo 2 ahora tiene el id 1
+        grupo2.id = "1";
       }
-      // Convertir string HTML en nodo real para el nuevo grupo
+
+      // 🔧 Crear nodo real a partir del string HTML
       const temp = document.createElement("div");
       temp.innerHTML = htmlGrupoNuevo;
-      const nuevoGrupo = temp.firstElementChild!;
+      const nuevoGrupo = temp.firstElementChild;
       nuevoGrupo.id = "2";
-      carrusel.appendChild(nuevoGrupo);
 
-      // Asignar el id 2 al nuevo grupo
-      nuevoGrupo.id = "2"; // El nuevo grupo tiene el id 2
-
-      // Agregar el nuevo grupo al carrusel
       carrusel.appendChild(nuevoGrupo);
     }
 
@@ -184,35 +187,4 @@
   }
 
   requestAnimationFrame(ver_coordenadas);
-
-  // Calcular quien fue el ganador
-  const carrusel = document.querySelector(".carrusel")!;
-
-  carrusel.addEventListener("animationend", () => {
-    const padre = document.querySelector(".container-carrusel")!;
-    const padre_coords = padre.getBoundingClientRect();
-    const centroX = padre_coords.left + padre_coords.width / 2;
-
-    const jugadores = document.querySelectorAll(".player");
-    let jugadorMasCerca = null;
-    let distanciaMinima = Infinity;
-
-    jugadores.forEach((jugador) => {
-      const coords = jugador.getBoundingClientRect();
-      const centroJugador = coords.left + coords.width / 2;
-      const distancia = Math.abs(centroJugador - centroX);
-
-      if (distancia < distanciaMinima) {
-        distanciaMinima = distancia;
-        jugadorMasCerca = jugador;
-      }
-    });
-
-    console.log("Jugador más cerca del centro:", jugadorMasCerca);
-    // Clases visuales cuando gana alguno
-    const ganadorEl = document.querySelector("#ganador")
-    
-    ganadorEl!.classList.remove("oculto");
-    ganadorEl!.classList.add("mostrar");
-  });
 </script>

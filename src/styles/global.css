@@ -24,7 +24,6 @@
 }
 
 .mostrar {
-  @apply  absolute top-0 right-1/2 translate-x-1/2 mt-5 bg-black p-9 flex-col justify-center place-items-center;
   display: flex;
 }
 
