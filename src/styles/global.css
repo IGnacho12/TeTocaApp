@@ -7,26 +7,51 @@
 .player {
   @apply flex flex-col justify-center items-center; /* align-items: space-around no existe en Tailwind, usé items-center */
   @apply aspect-square object-contain h-[130px] w-[130px] mx-[5px] my-[20px];
-  background: linear-gradient(
-    0deg,
-    rgba(16, 8, 248, 0.6) 0%,
-    transparent 20%
-  );
+  background: linear-gradient(0deg, rgba(248, 192, 8, 0.8) 0%, transparent 20%);
 }
 
 .nombre {
   @apply text-center break-words text-2xl;
-  
 }
 
 .apellido {
   @apply font-bold text-center text-gray-400;
 }
 
-.mostrar {
-  display: flex;
+/* Estado inicial oculto (no se ve, no interactúa) */
+.oculto {
+  display: none
 }
 
-.oculto {
-  display: none;
+/* Cuando se muestra, se anima a visible */
+.mostrar {
+  display: flex
+}
+
+.h1ganador {
+  @apply text-4xl text-green-300 font-bold text-shadow-lg/30 text-shadow-green-400;
+}
+
+.bg-rojo {
+  background: linear-gradient(0deg, rgba(248, 8, 8, 0.8) 0%, transparent 20%);
+}
+
+.bg-rosa {
+  background: linear-gradient(0deg, rgba(248, 8, 208, 0.8) 0%, transparent 20%);
+}
+
+.bg-azul {
+  background: linear-gradient(0deg, rgba(24, 8, 248, 0.8) 0%, transparent 20%);
+}
+
+.bg-cyan {
+  background: linear-gradient(0deg, rgba(8, 232, 248, 0.8) 0%, transparent 20%);
+}
+
+.bg-verde {
+  background: linear-gradient(0deg, rgba(8, 248, 116, 0.8) 0%, transparent 20%);
+}
+
+.bg-naranja {
+  background: linear-gradient(0deg, rgba(248, 192, 8, 0.8) 0%, transparent 20%);
 }

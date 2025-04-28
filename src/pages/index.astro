@@ -2,19 +2,23 @@
 import Layout from "../layouts/Layout.astro";
 import Slide from "../components/Slide.astro";
 import Empezar from "../components/Empezar.astro";
+import ListaJugadores from "../components/ListaJugadores.astro";
 ---
 
 <Layout title="Te toca 🧹">
   <main>
-    <h1 class="text-4xl font-bold pb-4 self-center place-self-center">DEAM SOM 🧙</h1>
-    <Slide></Slide>
-    <Empezar></Empezar>
-    <Empezar></Empezar>
+    <h1 class="text-4xl font-bold pb-4 self-center place-self-center">
+    TE TOCA
+    </h1>
+
+    <ListaJugadores />
+<!-- 
+    <Slide />
+    <Empezar /> -->
   </main>
-  
 </Layout>
 
-<style> 
+<style>
   main {
     display: flex;
     flex-direction: column;

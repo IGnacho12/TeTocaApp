@@ -105,7 +105,7 @@ import Ganador from "./Ganador.astro";
   }
 
   .animation-slide {
-    animation: scroll 2s forwards;
+    animation: scroll 10s forwards;
     animation-timing-function: cubic-bezier(0, -0.17, 0, 1.01);
   }
 </style>
@@ -128,7 +128,7 @@ import Ganador from "./Ganador.astro";
   ];
 
   // 🔁 Genera un arreglo con jugadores aleatorios (pueden repetirse)
-  function genenrarJugadoresDeManeraAleatoria() {
+  function generarJugadoresDeManeraAleatoria() {
     let jugadoresAleatoriosData = [];
 
     for (let i = 0; i < jugadoresData.length; i++) {
@@ -138,15 +138,33 @@ import Ganador from "./Ganador.astro";
 
     return jugadoresAleatoriosData;
   }
+  function obtenerClaseDeGradienteAleatoria() {
+  // Arreglo de clases de gradientes
+  const gradientes = [
+    "bg-rojo",
+    "bg-rosa",
+    "bg-azul",
+    "bg-cyan",
+    "bg-verde",
+    "bg-naranja"
+  ];
+
+  // Selecciona una clase aleatoria
+  const indiceAleatorio = Math.floor(Math.random() * gradientes.length);
+
+  // Devuelve la clase aleatoria
+  return gradientes[indiceAleatorio];
+}
+
 
   // 🧱 Crear HTML del nuevo grupo de jugadores
-  const jugadoresAleatorios = genenrarJugadoresDeManeraAleatoria();
+  const jugadoresAleatorios = generarJugadoresDeManeraAleatoria();
 
   let htmlGrupoNuevo = `<div class="grupo flex flex-row" id="2">`;
 
   jugadoresAleatorios.forEach((j, index) => {
     htmlGrupoNuevo += `
-      <div class="player">
+      <div class="player ${obtenerClaseDeGradienteAleatoria()}">
         <h2 class="nombre${index < 2 ? " titulo" : ""}">${j.nombre}</h2>
         <span class="apellido">${j.apellido}</span>
       </div>
