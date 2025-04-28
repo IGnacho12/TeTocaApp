@@ -1,0 +1,52 @@
+<h2 class="font-bold text-gray-200 border-b-2 border-gray-600 mt-16 pl-3">
+  Historial...
+</h2>
+<section
+  id="historial"
+  class="flex flex-col"
+>
+</section>
+
+<script>
+
+  document.querySelector(".ruleta").addEventListener("animationend", () => {
+    const padre = document.querySelector(".container-carrusel")!;
+    const padre_coords = padre.getBoundingClientRect();
+    const centroX = padre_coords.left + padre_coords.width / 2;
+
+    const jugadores = document.querySelectorAll(".player");
+    let jugadorMasCerca = null;
+    let distanciaMinima = Infinity;
+
+    jugadores.forEach((jugador) => {
+      const coords = jugador.getBoundingClientRect();
+      const centroJugador = coords.left + coords.width / 2;
+      const distancia = Math.abs(centroJugador - centroX);
+
+      if (distancia < distanciaMinima) {
+        distanciaMinima = distancia;
+        jugadorMasCerca = jugador;
+      }
+    });
+
+    let nombreGanador =
+      jugadorMasCerca.querySelector(".nombre")?.textContent || "";
+    let apellidoGanador =
+      jugadorMasCerca.querySelector(".apellido")?.textContent || "";
+
+    console.log(
+      "soy el historial y estos son los nombres",
+      nombreGanador,
+      apellidoGanador
+    );
+
+    let htmlGrupoNuevo = `<div class="contenedorGrupoHistorial">
+                            <h3 class='hisnombre'>${nombreGanador}</h3>
+                            <h4 class='hisapellido'>${apellidoGanador}</h4>
+                          </div>`;
+
+    document
+      .querySelector("#historial")
+      .insertAdjacentHTML("beforeend", htmlGrupoNuevo);
+  });
+</script>

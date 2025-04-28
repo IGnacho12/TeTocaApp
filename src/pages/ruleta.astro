@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import BTNEmpezar from "../components/BTNEmpezar.astro";
 import Ganador from "../components/Ganador.astro";
+import EstudiantesElegidos from "../components/EstudiantesElegidos.astro";
 ---
 
 <Layout>
@@ -46,6 +47,8 @@ import Ganador from "../components/Ganador.astro";
   </div>
 
   <BTNEmpezar />
+
+  <EstudiantesElegidos />
 </Layout>
 
 <script>
@@ -187,11 +190,15 @@ import Ganador from "../components/Ganador.astro";
 
         document.getElementById("empezarbtn").disabled = false;
         console.log("se reabilita boton");
+
+        
       });
     }
 
     gestionarAnimacionYPosiciones();
     determinarGanador();
+
+
   }
 
   init();
@@ -211,7 +218,7 @@ import Ganador from "../components/Ganador.astro";
   }
 
   .animation-slide {
-    animation: scroll 5s forwards;
+    animation: scroll 2s forwards;
     animation-timing-function: cubic-bezier(0, -0.17, 0, 1.01);
   }
 </style>

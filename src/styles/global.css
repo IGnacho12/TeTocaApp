@@ -37,5 +37,28 @@ input[type="chekbox"] {
 }
 
 .oculto {
-  @apply hidden
+  @apply hidden;
+}
+
+/* Animación personalizada con keyframes */
+@keyframes mostrar {
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 200px; /* Cambia este valor según el contenido */
+  }
+}
+
+.contenedorGrupoHistorial {
+  @apply overflow-hidden rounded-xl flex gap-1 pl-3;
+  animation: mostrar 2s forwards;
+}
+
+.hisnombre {
+  @apply italic font-bold text-gray-700;
+}
+
+.hisapellido {
+  @apply italic font-bold text-gray-700;
 }
