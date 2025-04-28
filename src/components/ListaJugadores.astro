@@ -1,62 +1,79 @@
-<h1 class="text-[#00ff40] font-bold text-2xl ml-2 underline underline-offset-2 decoration-3">Administre los jugadores</h1>
+---
+import Footer from "./Footer.astro";
+---
+
+<h1
+  class="text-[#00ff40] font-bold text-2xl ml-2 underline underline-offset-2 decoration-3"
+>
+  Administre los jugadores
+</h1>
 
 <!-- 📋 Tabla para administrar jugadores -->
-<table class="table-auto border-collapse border border-green-600 mt-4">
+<table class="tabla">
   <thead>
-    <tr class="bg-green-950">
+    <tr class="cabecera">
       <!-- 🔘 Columna para marcar como ausente -->
-      <th class="border border-green-600 px-4 py-2">A</th>
+      <th class="celda">A</th>
 
       <!-- ✅ Columna para marcar como presente -->
-      <th class="border border-green-600 px-4 py-2">P</th>
+      <th class="celda">P</th>
 
       <!-- 📛 Columna del nombre del jugador -->
-      <th class="border border-green-600 px-4 py-2">Nombre</th>
+      <th class="celda">Nombre</th>
 
       <!-- 🧾 Columna del apellido del jugador -->
-      <th class="border border-green-600 px-4 py-2">Apellido</th>
+      <th class="celda">Apellido</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="tablaJugadores">
     <!-- 🔁 Fila de ejemplo, se repetirá dinámicamente -->
     <tr>
       <!-- ❌ Checkbox para marcar como ausente -->
-      <td class="border border-green-600 px-4 py-2 text-center">
-        <input type="radio" name="estado1" value="ausente">
+      <td class="celda">
+        <input type="radio" name="estado1" value="ausente" />
       </td>
 
       <!-- ✔️ Checkbox para marcar como presente -->
-      <td class="border border-green-600 px-4 py-2 text-center">
-        <input type="radio" name="estado1" value="presente" checked>
+      <td class="celda">
+        <input type="radio" name="estado1" value="presente" checked />
       </td>
 
       <!-- 🧍 Nombre del jugador -->
-      <td class="border border-green-600 px-4 py-2 text-center">Benjamín</td>
+      <td class="celda">
+        <input type="text" value="Jugador" />
+      </td>
 
       <!-- 👤 Apellido del jugador -->
-      <td class="border border-green-600 px-4 py-2 text-center">Aguilera</td>
+      <td class="celda">
+        <input type="text" value="Apellido" />
+      </td>
     </tr>
+
     <tr>
       <!-- ❌ Checkbox para marcar como ausente -->
-      <td class="border border-green-600 px-4 py-2 text-center">
-        <input type="radio" name="estado1" value="ausente">
+      <td class="celda">
+        <input type="radio" name="estado1" value="ausente" />
       </td>
 
       <!-- ✔️ Checkbox para marcar como presente -->
-      <td class="border border-green-600 px-4 py-2 text-center">
-        <input type="radio" name="estado1" value="presente" checked>
+      <td class="celda">
+        <input type="radio" name="estado1" value="presente" checked />
       </td>
 
       <!-- 🧍 Nombre del jugador -->
-      <td class="border border-green-600 px-4 py-2 text-center"><input type="text"></td>
+      <td class="celda">
+        <input type="text" value="Jugador" />
+      </td>
 
       <!-- 👤 Apellido del jugador -->
-      <td class="border border-green-600 px-4 py-2 text-center">Aguilera</td>
+      <td class="celda">
+        <input type="text" value="Apellido" />
+      </td>
     </tr>
-
   </tbody>
 </table>
 
+<Footer />
 
 
-
+<style></style>

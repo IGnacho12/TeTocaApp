@@ -7,7 +7,8 @@
 .player {
   @apply flex flex-col justify-center items-center; /* align-items: space-around no existe en Tailwind, usé items-center */
   @apply aspect-square object-contain h-[130px] w-[130px] mx-[5px] my-[20px];
-  background: linear-gradient(0deg, rgba(248, 192, 8, 0.8) 0%, transparent 20%);
+  background: linear-gradient(0deg, rgba(24, 8, 248, 0.8) 0%, transparent 20%);
+
 }
 
 .nombre {
@@ -54,4 +55,29 @@
 
 .bg-naranja {
   background: linear-gradient(0deg, rgba(248, 192, 8, 0.8) 0%, transparent 20%);
+}
+
+/* Estilos para la tabla */
+.tabla {
+  @apply w-full border-collapse mt-4;
+}
+
+/* Estilos para la cabecera de la tabla */
+.cabecera {
+  @apply bg-[oklch(26.6%_0.065_152.934)];
+}
+
+/* Estilos para las celdas */
+.celda {
+  @apply border border-[oklch(62.7%_0.194_149.214)] p-2 text-center;
+}
+
+/* Estilos para los inputs de texto */
+input[type="text"] {
+  @apply max-w-[100px] text-ellipsis text-center p-1 rounded-md;
+}
+
+/* Estilos para los inputs de tipo radio */
+input[type="radio"] {
+  @apply mx-auto;
 }

@@ -1,17 +1,24 @@
-<button id="go" class="bg-blue-800 text-white font-bold text-2xl px-4 py-2 rounded-xl transition-all hover:bg-blue-500 duration-100 hover:rounded m-12 place-self-center hover:cursor-pointer">Empezar</button>
+---
+// Componente Empezar.astro
+const { identificador } = Astro.props;
+---
 
-<script>
- document.getElementById("go")!.addEventListener("click", function () {
-  const slideElement = document.querySelector(".carrusel");
+<button
+  class="empezar-btn bg-blue-800 text-white font-bold text-2xl px-4 py-2 rounded-xl transition-all hover:bg-blue-500 duration-100 hover:rounded m-12 place-self-center hover:cursor-pointer"
+  data-identificador={identificador}
+>
+  Empezar
+</button>
 
-  // 1. Quitamos la clase
-  slideElement!.classList.remove("animation-slide");
+<script is:inline>
+  document.querySelectorAll(".empezar-btn").forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const identificador = this.dataset.identificador;
+      const slideElement = document.querySelector(`#${identificador}`);
 
-  // 2. Forzamos un "reflow" del DOM para que el navegador note el cambio
-  void slideElement!.offsetWidth;
-
-  // 3. Volvemos a agregar la clase
-  slideElement!.classList.add("animation-slide");
-});
-
+      slideElement?.classList.remove("animation-slide");
+      void slideElement?.offsetWidth;
+      slideElement?.classList.add("animation-slide");
+    });
+  });
 </script>

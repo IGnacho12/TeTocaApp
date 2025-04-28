@@ -1,5 +1,6 @@
 ---
 import Ganador from "./Ganador.astro";
+const { identificador } = Astro.props
 ---
 
 <!-- 🧱 Estructura general del carrusel -->
@@ -36,8 +37,8 @@ import Ganador from "./Ganador.astro";
     </div>
 
     <!-- 🧩 Componente Ganador + Sección Carrusel -->
-    <Ganador />
-    <section class="carrusel flex flex-row">
+    <Ganador identificador={identificador} />
+    <section class="carrusel flex flex-row" id=`${identificador}`>
       <!-- 🎯 Grupo inicial de jugadores (estático) -->
       <div class="grupo flex-row flex" id="1">
         <div class="player">

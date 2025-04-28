@@ -1,53 +1,58 @@
+---
+const { identificador } = Astro.props;
+---
+
+<input class="none" id="inputid" value=`${identificador}` />
 <div
-  class="absolute top-0 right-1/2 translate-x-1/2 mt-5 p-9 flex-col justify-center place-items-center oculto backdrop-blur-lg z-50 w-full"
-  id="ganador"
+  class="ganador absolute top-0 right-1/2 translate-x-1/2 mt-5 p-9 flex-col justify-center place-items-center oculto backdrop-blur-lg z-50 w-full"
+  id={`ganador-${identificador}`}
 >
-  <h1
-    class="h1ganador"
-  >
-    ¡Te toca!
-  </h1>
-  <h2 class="nombre" id="nombreGanador"></h2>
-  <span class="apellido" id="apellidoGanador"></span>
+  <h1 class="h1ganador">¡Te toca!</h1>
+  <h2 class="nombre" id={"nombreGanador-" + identificador}></h2>
+  <span class="apellido" id={"apellidoGanador-" + identificador}></span>
 </div>
 
+<script is:inline>
+  const identificador = document.getElementById("inputid").value;
 
+  const carrusel = document.querySelector(`#${identificador}`);
+  const nombreGanador = document.querySelector(
+    `#nombreGanador-${identificador}`
+  );
+  const apellidoGanador = document.querySelector(
+    `#apellidoGanador-${identificador}`
+  );
+  const ganadorEl = document.querySelector(`#ganador-${identificador}`);
 
-<script>
-  const carrusel = document.querySelector(".carrusel")!;
-  const nombreGanador = document.querySelector("#nombreGanador");
-  const apellidoGanador = document.querySelector("#apellidoGanador");
+  if (carrusel) {
+    carrusel.addEventListener("animationend", () => {
+      const padre = carrusel.closest(".container-carrusel");
+      const padre_coords = padre.getBoundingClientRect();
+      const centroX = padre_coords.left + padre_coords.width / 2;
 
-  carrusel.addEventListener("animationend", () => {
-    const padre = document.querySelector(".container-carrusel")!;
-    const padre_coords = padre.getBoundingClientRect();
-    const centroX = padre_coords.left + padre_coords.width / 2;
+      const jugadores = carrusel.querySelectorAll(".player");
+      let jugadorMasCerca = null;
+      let distanciaMinima = Infinity;
 
-    const jugadores = document.querySelectorAll(".player");
-    let jugadorMasCerca = null;
-    let distanciaMinima = Infinity;
+      jugadores.forEach((jugador) => {
+        const coords = jugador.getBoundingClientRect();
+        const centroJugador = coords.left + coords.width / 2;
+        const distancia = Math.abs(centroJugador - centroX);
 
-    jugadores.forEach((jugador) => {
-      const coords = jugador.getBoundingClientRect();
-      const centroJugador = coords.left + coords.width / 2;
-      const distancia = Math.abs(centroJugador - centroX);
+        if (distancia < distanciaMinima) {
+          distanciaMinima = distancia;
+          jugadorMasCerca = jugador;
+        }
+      });
 
-      if (distancia < distanciaMinima) {
-        distanciaMinima = distancia;
-        jugadorMasCerca = jugador;
+      if (jugadorMasCerca && ganadorEl && nombreGanador && apellidoGanador) {
+        ganadorEl.classList.remove("oculto");
+        ganadorEl.classList.add("flex");
+        nombreGanador.textContent =
+          jugadorMasCerca.querySelector(".nombre")?.textContent || "";
+        apellidoGanador.textContent =
+          jugadorMasCerca.querySelector(".apellido")?.textContent || "";
       }
     });
-
-    console.log("Jugador más cerca del centro:", jugadorMasCerca);
-    // Clases visuales cuando gana
-    const ganadorEl = document.querySelector("#ganador");
-    console.log(ganadorEl);
-
-    ganadorEl!.classList.remove("oculto");
-    ganadorEl!.classList.add("flex");
-    // Asignación del ganador
-    nombreGanador.innerHTML = `${jugadorMasCerca.firstElementChild.textContent}`;
-    apellidoGanador.innerHTML = `${jugadorMasCerca.lastElementChild.textContent}`;
-  });
-
+  }
 </script>
