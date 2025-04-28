@@ -6,7 +6,7 @@ body {
   @apply text-white;
 }
 .tabla {
-  @apply w-4/5 border-collapse mt-4 text-white;
+  @apply w-full lg:w-4/5 border-collapse mt-4 text-white;
 }
 
 /* Estilos para la cabecera de la tabla */
