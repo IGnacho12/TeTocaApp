@@ -1,65 +1,12 @@
 @import "tailwindcss";
 
-.grupo {
-  @apply flex;
+/* Estilos de la tabla estudiantes */
+
+body {
+  @apply text-white;
 }
-
-.player {
-  @apply flex flex-col justify-center items-center; /* align-items: space-around no existe en Tailwind, usé items-center */
-  @apply aspect-square object-contain h-[130px] w-[130px] mx-[5px] my-[20px];
-  background: linear-gradient(0deg, rgba(24, 8, 248, 0.8) 0%, transparent 20%);
-
-}
-
-.nombre {
-  @apply text-center break-words text-2xl;
-}
-
-.apellido {
-  @apply font-bold text-center text-gray-400;
-}
-
-/* Estado inicial oculto (no se ve, no interactúa) */
-.oculto {
-  display: none
-}
-
-/* Cuando se muestra, se anima a visible */
-.mostrar {
-  display: flex
-}
-
-.h1ganador {
-  @apply text-4xl text-green-300 font-bold text-shadow-lg/30 text-shadow-green-400;
-}
-
-.bg-rojo {
-  background: linear-gradient(0deg, rgba(248, 8, 8, 0.8) 0%, transparent 20%);
-}
-
-.bg-rosa {
-  background: linear-gradient(0deg, rgba(248, 8, 208, 0.8) 0%, transparent 20%);
-}
-
-.bg-azul {
-  background: linear-gradient(0deg, rgba(24, 8, 248, 0.8) 0%, transparent 20%);
-}
-
-.bg-cyan {
-  background: linear-gradient(0deg, rgba(8, 232, 248, 0.8) 0%, transparent 20%);
-}
-
-.bg-verde {
-  background: linear-gradient(0deg, rgba(8, 248, 116, 0.8) 0%, transparent 20%);
-}
-
-.bg-naranja {
-  background: linear-gradient(0deg, rgba(248, 192, 8, 0.8) 0%, transparent 20%);
-}
-
-/* Estilos para la tabla */
 .tabla {
-  @apply w-full border-collapse mt-4;
+  @apply w-4/5 border-collapse mt-4 text-white;
 }
 
 /* Estilos para la cabecera de la tabla */
@@ -78,6 +25,17 @@ input[type="text"] {
 }
 
 /* Estilos para los inputs de tipo radio */
-input[type="radio"] {
-  @apply mx-auto;
+input[type="chekbox"] {
+  @apply w-full h-full block;
+}
+
+/* estudiates caja */
+.player {
+  @apply flex flex-col justify-center items-center; /* align-items: space-around no existe en Tailwind, usé items-center */
+  @apply aspect-square object-contain h-[130px] w-[130px] mx-[5px] my-[20px];
+  background: linear-gradient(0deg, rgba(24, 8, 248, 0.8) 0%, transparent 20%);
+}
+
+.oculto {
+  @apply hidden
 }

@@ -1,0 +1,217 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BTNEmpezar from "../components/BTNEmpezar.astro";
+import Ganador from "../components/Ganador.astro";
+---
+
+<Layout>
+  <div class="relative flex flex-col">
+    <main
+      class="container-carrusel w-full z-20 relative overflow-hidden self-center"
+    >
+      <!-- 🎨 Degradados laterales para el efecto de carrusel -->
+      <div
+        class="absolute top-0 left-0 h-full w-1/5 bg-gradient-to-r from-black to-transparent z-30 pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute top-0 right-0 h-full w-1/5 bg-gradient-to-l from-black to-transparent z-30 pointer-events-none"
+      >
+      </div>
+
+      <!-- 🔽 Flecha decorativa en la parte inferior -->
+      <div class="absolute bottom-2 z-30 right-1/2 h-full translate-x-1/2">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-down"
+        >
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+          <path d="M12 5l0 14"></path>
+          <path d="M16 15l-4 4"></path>
+          <path d="M8 15l4 4"></path>
+        </svg>
+      </div>
+
+      <!-- 🧩 Componente Ganador + Sección Carrusel -->
+      <section class="ruleta flex flex-row"></section>
+      <Ganador />
+    </main>
+  </div>
+
+  <BTNEmpezar />
+</Layout>
+
+<script>
+  function init() {
+    AgregarGrupoARuleta(1);
+    AgregarGrupoARuleta();
+
+    function generarJugadoresDeManeraAleatoria() {
+      const estudiantes = JSON.parse(localStorage.getItem("estudiantesarray")); // 👈 Parsear acá
+
+      console.log("ahora la variable esta aquí:", estudiantes);
+      let jugadoresAleatoriosData = [];
+
+      for (let i = 0; i < estudiantes.length; i++) {
+        let numeroAleatorio = Math.floor(Math.random() * estudiantes.length);
+        jugadoresAleatoriosData.push(estudiantes[numeroAleatorio]);
+      }
+
+      return jugadoresAleatoriosData;
+    }
+
+    function generarHtmlGrupoDeJugadoresAleatorios(id = 2) {
+      let htmlGrupoNuevo = `<div class="grupo flex flex-row" id=${id}>`;
+
+      generarJugadoresDeManeraAleatoria().forEach((j, index) => {
+        htmlGrupoNuevo += `
+    <div class="player">
+      <h2 class="nombre${index < 2 ? " titulo" : ""}">${j.nombre}</h2>
+      <span class="apellido">${j.apellido}</span>
+    </div>
+  `;
+      });
+
+      htmlGrupoNuevo += `</div>`;
+
+      return htmlGrupoNuevo;
+    }
+
+    function AgregarGrupoARuleta(id = 2) {
+      document
+        .querySelector(".ruleta")
+        .insertAdjacentHTML(
+          "beforeend",
+          generarHtmlGrupoDeJugadoresAleatorios(id)
+        );
+    }
+
+    function gestionarAnimacionYPosiciones() {
+      function AgregarGrupoARuleta(id = 2) {
+        document
+          .querySelector(".ruleta")
+          .insertAdjacentHTML(
+            "beforeend",
+            generarHtmlGrupoDeJugadoresAleatorios(id)
+          );
+      }
+
+      // Función para comenzar la animación
+      function ver_coordenadas() {
+        const padre = document.querySelector(".container-carrusel");
+        const grupo1 = document.getElementById("1");
+
+        const padre_coords = padre.getBoundingClientRect();
+        const grupo1_coords = grupo1.getBoundingClientRect();
+
+        if (padre_coords.left > grupo1_coords.right) {
+          grupo1.id = "0";
+          grupo1.classList.add("borrame");
+
+          const grupo2 = document.getElementById("2");
+          if (grupo2) {
+            grupo2.id = "1";
+          }
+
+          AgregarGrupoARuleta();
+        }
+
+        requestAnimationFrame(ver_coordenadas);
+      }
+
+      document.querySelector("#empezarbtn")?.addEventListener("click", () => {
+        // Si se quiere reiniciar todo
+        if (
+          document
+            .querySelector(".ruleta")
+            .classList.contains("animation-slide")
+        ) {
+          console.log(" se quiere reinciar todo");
+          document.getElementById("ganador").classList.add("oculto");
+          document.querySelector(".ruleta").innerHTML = "";
+          document.querySelector(".ruleta").classList.remove("animation-slide");
+          document.getElementById("empezarbtn").textContent = "EMPEZAR! 🎲";
+          AgregarGrupoARuleta(1);
+          AgregarGrupoARuleta();
+        } else {
+          document.querySelector(".ruleta")?.classList.add("animation-slide");
+          document.getElementById("empezarbtn").disabled = true;
+          document.getElementById("empezarbtn").textContent = "LISTO!";
+          console.log("Animación iniciada");
+          requestAnimationFrame(ver_coordenadas); // 👈 Iniciar el bucle recién acá
+        }
+      });
+    }
+
+    function determinarGanador() {
+      document.querySelector(".ruleta").addEventListener("animationend", () => {
+        const padre = document.querySelector(".container-carrusel")!;
+        const padre_coords = padre.getBoundingClientRect();
+        const centroX = padre_coords.left + padre_coords.width / 2;
+
+        const jugadores = document.querySelectorAll(".player");
+        let jugadorMasCerca = null;
+        let distanciaMinima = Infinity;
+
+        jugadores.forEach((jugador) => {
+          const coords = jugador.getBoundingClientRect();
+          const centroJugador = coords.left + coords.width / 2;
+          const distancia = Math.abs(centroJugador - centroX);
+
+          if (distancia < distanciaMinima) {
+            distanciaMinima = distancia;
+            jugadorMasCerca = jugador;
+          }
+        });
+        console.log(jugadorMasCerca);
+
+        let nombreGanador =
+          jugadorMasCerca.querySelector(".nombre")?.textContent || "";
+        let apellidoGanador =
+          jugadorMasCerca.querySelector(".apellido")?.textContent || "";
+
+        console.log(nombreGanador, apellidoGanador);
+        document.getElementById("ganador").classList.remove("oculto");
+        document.getElementById("nombreGanador").textContent = nombreGanador;
+        document.getElementById("apellidoGanador").textContent =
+          apellidoGanador;
+
+        console.log("se debe rehablitiar btn");
+
+        document.getElementById("empezarbtn").disabled = false;
+        console.log("se reabilita boton");
+      });
+    }
+
+    gestionarAnimacionYPosiciones();
+    determinarGanador();
+  }
+
+  init();
+
+  // Re-initialize after swapping pages
+  document.addEventListener("astro:after-swap", init);
+</script>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(-5000%);
+    }
+  }
+
+  .animation-slide {
+    animation: scroll 5s forwards;
+    animation-timing-function: cubic-bezier(0, -0.17, 0, 1.01);
+  }
+</style>

@@ -1,41 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Slide from "../components/Slide.astro";
-import Empezar from "../components/Empezar.astro";
-import ListaJugadores from "../components/ListaJugadores.astro";
+import TablaEstudiantes from "../components/TablaEstudiantes.astro";
+import { ClientRouter } from "astro:transitions";
 ---
 
-<Layout title="Te toca 🧹">
+<Layout>
+	<ClientRouter></ClientRouter>
   <main>
-    <h1 class="text-4xl font-bold pb-4 self-center place-self-center">
-      TE TOCA
-    </h1>
-
-
-    <Slide identificador="carrusel1" />
-    <Empezar identificador="carrusel1"  />
-
-    
-    <Slide identificador="carrusel2" />
-    <Empezar identificador="carrusel2"  />
+    <TablaEstudiantes />
   </main>
 </Layout>
 
 <style>
   main {
-    display: flex;
-    flex-direction: column;
+    padding-bottom: 200px;
   }
 </style>
 
-<!-- Script para cargar el Service Worker -->
-<script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((reg) => console.log("SW registrado", reg))
-        .catch((err) => console.log("Error al registrar SW", err));
-    });
-  }
-</script>
+<!-- Script de control de la tabla -->
+
+

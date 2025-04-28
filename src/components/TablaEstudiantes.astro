@@ -1,0 +1,226 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main>
+    <h1
+      class="text-[#00ff40] font-bold text-2xl ml-2 underline underline-offset-2 decoration-3"
+    >
+      Administre los jugadores
+    </h1>
+
+    <!-- 📋 Tabla para administrar jugadores -->
+    <table class="tabla">
+      <thead>
+        <tr class="cabecera">
+          <th class="celda">P</th>
+          <th class="celda">Nombre</th>
+          <th class="celda">Apellido</th>
+        </tr>
+      </thead>
+      <tbody id="tablaJugadores">
+        <!-- Las filas se agregan dinámicamente -->
+      </tbody>
+    </table>
+
+    <a
+      class="ir border-2 border-green-700 text-green-500 text-shadow-green-700 font-bold"
+      id="updatebtn"
+      href="/ruleta/"
+    >
+      LISTO! IR A LA RULETA
+    </a>
+  </main>
+
+  <!-- Controles para añadir y quitar estudiantes -->
+  <footer class="flex flex-row w-full justify-around fixed bottom-2">
+    <!-- ADD ✅ -->
+    <button
+      class="hover:bg-gray-700 bg-gray-900 px-5 py-2 transition-all duration-200 w-full text-green-500 font-bold border-r-2 border-slate-300"
+      id="addbtn"
+    >
+      añadir
+    </button>
+
+    <!-- DELETE ❌ -->
+    <button
+      class="hover:bg-gray-700 bg-gray-900 px-5 py-2 transition-all duration-200 w-full text-red-500 font-bold"
+      id="delbtn"
+    >
+      Eliminar
+    </button>
+  </footer>
+</Layout>
+
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  table {
+    min-width: 80%;
+  }
+
+  .ir {
+    background-image: url("verde.png");
+    background-size: cover;
+    background-position: bottom;
+    position: relative;
+    -webkit-text-stroke: 1px rgba(0, 140, 0, 0.2);
+    margin-top: 20px;
+  }
+
+  .ir:hover {
+    -webkit-text-stroke: 1px rgb(0, 140, 0);
+    cursor: pointer;
+  }
+
+  .ir:hover::before {
+    opacity: 1;
+  }
+
+  .ir::before {
+    opacity: 0;
+    transition: all 0.3s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(5, 219, 16, 0.5) 0%,
+      rgba(65, 197, 13, 0) 50%,
+      rgba(5, 219, 16, 0.5) 100%
+    );
+    z-index: 10;
+  }
+</style>
+
+<script>
+  function init() {
+    const $ = (element) => document.querySelector(element);
+
+    let estudiantes = null;
+
+    if (localStorage.getItem("estudiantesarray")) {
+      console.log("Ya se encontró en el localStorage, vamos a usar ese.");
+      estudiantes = JSON.parse(localStorage.getItem("estudiantesarray"));
+      console.log(estudiantes);
+    } else {
+      estudiantes = [
+        { nombre: "Benjamín", apellido: "Aguilera" },
+        { nombre: "Yoel", apellido: "Brizuela" },
+        { nombre: "Ignacio", apellido: "Castillo" },
+        { nombre: "Naara", apellido: "Duarte" },
+        { nombre: "Joaquín", apellido: "Paniagua" },
+        { nombre: "Milagros", apellido: "Fernández" },
+        { nombre: "Marcos", apellido: "Gauto" },
+        { nombre: "Nicolás", apellido: "Erazo" },
+        { nombre: "Ramiro", apellido: "Rojas" },
+        { nombre: "Cristian", apellido: "Rojas" },
+        { nombre: "Esteban", apellido: "Barrientos" },
+      ];
+
+      // IMPORTANTE: guardarlo como JSON
+      localStorage.setItem("estudiantesarray", JSON.stringify(estudiantes));
+      console.log("Se creó el item 'estudiantesarray' en localStorage.");
+    }
+
+    const tablaJugadores = $("#tablaJugadores");
+
+    $("#addbtn").addEventListener("click", () => {
+      addEstudiante();
+      updateEstudiantes();
+    });
+
+    $("#delbtn").addEventListener("click", () => {
+      delEstudiante();
+      updateEstudiantes();
+    });
+
+    $("#updatebtn").addEventListener("click", () => {
+      updateEstudiantes();
+    });
+
+    cargarEstudiantes();
+
+    function addEstudiante(nombre = "Nombre", apellido = "Apellido") {
+      const nuevaFila = document.createElement("tr");
+
+      const celdaPresente = document.createElement("td");
+      const celdaNombre = document.createElement("td");
+      const celdaApellido = document.createElement("td");
+
+      const inputPresente = document.createElement("input");
+      inputPresente.type = "checkbox";
+      inputPresente.value = "presente";
+      inputPresente.checked = true;
+
+      const inputNombre = document.createElement("input");
+      inputNombre.type = "text";
+      inputNombre.value = nombre;
+
+      const inputApellido = document.createElement("input");
+      inputApellido.type = "text";
+      inputApellido.value = apellido;
+
+      celdaPresente.classList.add("celda");
+      celdaNombre.classList.add("celda");
+      celdaApellido.classList.add("celda");
+
+      celdaPresente.appendChild(inputPresente);
+      celdaNombre.appendChild(inputNombre);
+      celdaApellido.appendChild(inputApellido);
+
+      nuevaFila.appendChild(celdaPresente);
+      nuevaFila.appendChild(celdaNombre);
+      nuevaFila.appendChild(celdaApellido);
+
+      tablaJugadores.appendChild(nuevaFila);
+    }
+
+    function delEstudiante() {
+      const filas = tablaJugadores.getElementsByTagName("tr");
+      if (filas.length > 0) {
+        // Eliminar la última fila
+        tablaJugadores.deleteRow(filas.length - 1);
+      }
+    }
+
+    function cargarEstudiantes() {
+      estudiantes.forEach((estudiante) => {
+        addEstudiante(estudiante.nombre, estudiante.apellido);
+      });
+    }
+
+    function updateEstudiantes() {
+      const estudiantes = [];
+
+      // Recorre todas las filas de la tabla
+      const filas = document.querySelectorAll("#tablaJugadores tr");
+
+      filas.forEach((fila) => {
+        const celdas = fila.querySelectorAll("td");
+        if (celdas.length > 0) {
+          const nombre = celdas[1].querySelector("input").value;
+          const apellido = celdas[2].querySelector("input").value;
+
+          estudiantes.push({ nombre, apellido });
+        }
+      });
+
+      localStorage.setItem("estudiantesarray", JSON.stringify(estudiantes))
+
+      console.log(estudiantes);
+    }
+  }
+
+  init();
+
+  // Re-initialize after swapping pages
+  document.addEventListener("astro:after-swap", init);
+</script>
