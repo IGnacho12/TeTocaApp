@@ -131,6 +131,40 @@ import EstudiantesElegidos from "../components/EstudiantesElegidos.astro";
 
       document.querySelector("#empezarbtn")?.addEventListener("click", () => {
         // Si se quiere reiniciar todo
+
+        function actualizarKeyframesScroll() {
+          // Valor aleatorio entre -5000 y -6000
+          const valor = -(5000 + Math.random() * 1000);
+
+          // Crea un nuevo bloque de estilos con el nuevo valor
+          const style = document.createElement("style");
+          style.textContent = `
+    @keyframes scroll {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(${valor}%);
+      }
+    }
+  `;
+
+          // Opcional: eliminar estilos anteriores si existen
+          const estilosPrevios = document.getElementById("keyframe-scroll");
+          if (estilosPrevios) {
+            estilosPrevios.remove();
+          }
+
+          // Le ponemos un id para controlar
+          style.id = "keyframe-scroll";
+          document.head.appendChild(style);
+
+          console.log(`Nuevo valor de desplazamiento: ${valor}%`);
+        }
+
+        // Llamar a la función para actualizar
+        actualizarKeyframesScroll();
+
         if (
           document
             .querySelector(".ruleta")
@@ -190,15 +224,11 @@ import EstudiantesElegidos from "../components/EstudiantesElegidos.astro";
 
         document.getElementById("empezarbtn").disabled = false;
         console.log("se reabilita boton");
-
-        
       });
     }
 
     gestionarAnimacionYPosiciones();
     determinarGanador();
-
-
   }
 
   init();
@@ -218,7 +248,7 @@ import EstudiantesElegidos from "../components/EstudiantesElegidos.astro";
   }
 
   .animation-slide {
-    animation: scroll 2s forwards;
+    animation: scroll 8s forwards;
     animation-timing-function: cubic-bezier(0, -0.17, 0, 1.01);
   }
 </style>
